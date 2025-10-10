@@ -1,0 +1,166 @@
+/* src/components/ContactSection/ContactSection.css */
+
+
+/* ------------------------------------------- */
+
+
+/* 1. 레이아웃 및 스타일링 */
+
+
+/* ------------------------------------------- */
+
+.contact-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-background);
+    padding: 80px 40px;
+}
+
+.contact-content-wrapper {
+    display: flex;
+    max-width: 1300px;
+    width: 100%;
+    /* 이미지와 텍스트를 절반씩 나누기 위해 gap 제거 */
+    gap: 0;
+    height: 60vh;
+    /* 높이 고정하여 이미지와 균형 맞추기 */
+}
+
+
+/* --- 왼쪽 칼럼: 연락처 정보 --- */
+
+.contact-left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* 내용을 중앙에 정렬 */
+    padding: 0 40px;
+}
+
+.contact-title {
+    font-size: 3rem;
+    font-family: var(--font-serif);
+    margin-bottom: 40px;
+}
+
+.contact-details {
+    margin-bottom: 60px;
+}
+
+.contact-item {
+    margin-bottom: 20px;
+}
+
+.contact-item .label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.contact-item .value {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.email-link a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.studio-info {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+
+/* --- 오른쪽 칼럼: 이미지 --- */
+
+.contact-right-column {
+    flex: 1;
+    /* 왼쪽과 동일한 너비 */
+    height: 100%;
+    overflow: hidden;
+    /* ⭐️ 애니메이션 초기 상태 ⭐️ */
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.contact-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 이미지가 컨테이너를 가득 채우도록 설정 */
+    display: block;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 2. 애니메이션 정의 및 적용 */
+
+
+/* ------------------------------------------- */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* 모든 텍스트 요소에 공통 초기 상태 설정 */
+
+.contact-title,
+.contact-item {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 3. 반응형 디자인 */
+
+
+/* ------------------------------------------- */
+
+@media (max-width: 992px) {
+    .contact-content-wrapper {
+        flex-direction: column-reverse;
+        /* 모바일에서 이미지를 위에 배치 */
+        height: auto;
+        gap: 40px;
+        align-items: center;
+    }
+    .contact-left-column {
+        flex: auto;
+        width: 100%;
+        padding: 0;
+        text-align: center;
+        align-items: center;
+    }
+    .contact-right-column {
+        flex: auto;
+        width: 100%;
+        height: 300px;
+        /* 모바일에서 이미지 높이 고정 */
+    }
+    .studio-info {
+        /* 하단으로 이동 */
+        margin-top: 20px;
+    }
+}

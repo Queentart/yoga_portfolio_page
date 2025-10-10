@@ -1,0 +1,184 @@
+/* src/components/IntroSection/IntroSection.css */
+
+
+/* ------------------------------------------- */
+
+
+/* 1. 레이아웃 및 스타일링 */
+
+
+/* ------------------------------------------- */
+
+.intro-section {
+    /* 전체 영역: 뷰포트 높이의 80~90% 정도를 사용 */
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* index.css의 body 배경색을 따르도록 설정 */
+    padding: 40px 20px;
+}
+
+.intro-content-wrapper {
+    display: flex;
+    max-width: 1300px;
+    width: 100%;
+    /* 흰색 네모 제거 */
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+/* 1-1. 이미지 영역 스타일 */
+
+.intro-image-container {
+    flex: 5;
+    max-width: 50%;
+    overflow: hidden;
+    /* 애니메이션 준비 */
+    opacity: 0;
+}
+
+.intro-profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* 1-2. 텍스트 영역 스타일 */
+
+.intro-text-container {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    color: var(--color-primary-text);
+    position: relative;
+}
+
+
+/* 개별 텍스트 요소 애니메이션 준비 */
+
+.intro-name,
+.intro-role,
+.intro-bio {
+    opacity: 0;
+    /* 애니메이션 지연이 적용될 수 있도록 기본 상태는 0으로 시작 */
+}
+
+
+/* 이름 스타일: Playfair Display 사용 */
+
+.intro-name {
+    font-family: var(--font-serif);
+    font-size: 4.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+
+/* 역할 스타일: Inter 사용 */
+
+.intro-role {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
+    margin-bottom: 25px;
+    color: var(--color-primary-text);
+}
+
+
+/* 소개 문구 스타일: Inter 사용 */
+
+.intro-bio {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 450px;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 2. 애니메이션 정의 (@keyframes) */
+
+
+/* ------------------------------------------- */
+
+
+/* 왼쪽에서 슬라이드 + 페이드인 (사진용) */
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* 오른쪽에서 슬라이드 + 페이드인 (텍스트용) */
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 3. 애니메이션 적용 클래스 */
+
+
+/* ------------------------------------------- */
+
+.animate-slide-left {
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.animate-slide-right {
+    animation: slideInRight 1s ease-out forwards;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 4. 반응형 디자인 */
+
+
+/* ------------------------------------------- */
+
+@media (max-width: 992px) {
+    .intro-content-wrapper {
+        flex-direction: column;
+        max-width: 600px;
+    }
+    .intro-image-container {
+        max-width: 100%;
+        max-height: 400px;
+    }
+    .intro-text-container {
+        padding: 50px 40px;
+    }
+    .intro-name {
+        font-size: 3rem;
+    }
+}

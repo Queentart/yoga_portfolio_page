@@ -1,0 +1,185 @@
+/* src/components/PhilosophySection/PhilosophySection.css */
+
+
+/* ------------------------------------------- */
+
+
+/* 1. 레이아웃 및 스타일링 */
+
+
+/* ------------------------------------------- */
+
+.philosophy-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-background);
+    padding: 80px 40px;
+}
+
+.philosophy-content-wrapper {
+    display: flex;
+    max-width: 1300px;
+    width: 100%;
+    height: 60vh;
+    gap: 80px;
+    align-items: flex-start;
+    /* 좌상단 배치 */
+}
+
+
+/* --- 왼쪽: 이미지 그룹 (좌측 상단 배치) --- */
+
+.philosophy-image-group {
+    /* ⭐️⭐️ 수정: image-1이 그룹 너비를 모두 차지하도록 flex-basis를 100%로 변경 ⭐️⭐️ */
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    /* image가 1개만 남았으므로 gap과 max-width는 그대로 두거나 필요 시 제거 가능 */
+    gap: 20px;
+    max-width: 50%;
+    /* 이미지 영역이 전체의 50%를 차지하도록 제한 */
+    align-self: flex-start;
+}
+
+
+/* 이미지 컨테이너 기본 스타일 */
+
+.image-container {
+    overflow: hidden;
+    /* ⭐️⭐️ 수정: 1개의 이미지가 그룹의 전체 너비를 차지하도록 설정 ⭐️⭐️ */
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    /* 그룹 너비(max-width: 50%)를 모두 사용 */
+    /* 애니메이션 초기 상태 */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+
+/* 1번 이미지: 가로가 긴 와이드 (16:9 비율) */
+
+.image-1 {
+    aspect-ratio: 16 / 9;
+    /* 16:9 비율 유지 */
+}
+
+
+/* 2번 이미지 관련 스타일은 이제 사용되지 않지만, 제거하지 않아도 무방합니다. */
+
+.image-2 {
+    /* aspect-ratio: 9 / 16; */
+    height: 100%;
+}
+
+.philosophy-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* --- 오른쪽: 텍스트 영역 (우측 하단 배치) --- */
+
+.philosophy-text-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+
+
+/* 텍스트 요소들의 스타일... */
+
+.philosophy-title,
+.philosophy-statement {
+    font-family: var(--font-serif);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.philosophy-title {
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.philosophy-statement {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 500px;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 2. 애니메이션 정의 및 적용 */
+
+
+/* ------------------------------------------- */
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slideInUp 0.8s ease-out forwards;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 3. 반응형 디자인 */
+
+
+/* ------------------------------------------- */
+
+@media (max-width: 992px) {
+    .philosophy-content-wrapper {
+        flex-direction: column;
+        height: auto;
+        gap: 40px;
+        align-items: flex-start;
+    }
+    .philosophy-image-group {
+        flex-direction: row;
+        height: auto;
+        max-width: 100%;
+        align-self: center;
+    }
+    .image-container {
+        /* 모바일에서는 뭉개짐 방지를 유지하고 너비를 100%로 설정 */
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 100%;
+    }
+    .image-1 {
+        aspect-ratio: 16 / 9;
+    }
+    .image-2 {
+        aspect-ratio: 4 / 3;
+        height: 100%;
+    }
+    .philosophy-text-container {
+        justify-content: flex-start;
+        align-self: center;
+        padding-left: 0;
+        text-align: center;
+    }
+}

@@ -1,0 +1,160 @@
+/* src/components/PortfolioSection/PortfolioSection.css */
+
+
+/* ------------------------------------------- */
+
+
+/* 1. 레이아웃 및 스타일링 */
+
+
+/* ------------------------------------------- */
+
+.portfolio-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-background);
+    padding: 100px 40px;
+}
+
+.portfolio-content-wrapper {
+    display: flex;
+    max-width: 1300px;
+    width: 100%;
+    gap: 80px;
+    align-items: flex-start;
+    /* 상단 정렬 */
+}
+
+
+/* --- 왼쪽 칼럼: 텍스트 영역 --- */
+
+.portfolio-left-column {
+    flex: 1;
+    padding-top: 50px;
+    /* 이미지 그리드와 수직 균형 맞추기 */
+}
+
+.portfolio-title {
+    font-size: 3rem;
+    font-family: var(--font-serif);
+    margin-bottom: 20px;
+}
+
+.portfolio-statement {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+
+/* --- 오른쪽 칼럼: 갤러리 그리드 영역 --- */
+
+.portfolio-right-column {
+    flex: 1.5;
+    /* 갤러리가 텍스트보다 더 많은 공간을 차지 */
+}
+
+.portfolio-grid {
+    /* ⭐️⭐️ 수정: 3열 그리드로 변경 (1행 3개) ⭐️⭐️ */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.portfolio-item {
+    overflow: hidden;
+    /* 1행 이미지에 맞춰 세로 비율 유지 */
+    aspect-ratio: 3 / 4;
+    /* 애니메이션 초기 상태 */
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+
+/* ⭐️⭐️ 추가: 와이드 이미지 스타일 (2행) ⭐️⭐️ */
+
+.portfolio-item.is-wide {
+    /* 3열을 모두 차지하도록 설정 */
+    grid-column: 1 / span 3;
+    /* 가로가 긴 비율로 설정 */
+    aspect-ratio: 16 / 9;
+}
+
+.portfolio-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 2. 애니메이션 정의 및 적용 */
+
+
+/* ------------------------------------------- */
+
+
+/* 단순 페이드 인 애니메이션 정의 */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* 모든 텍스트 요소에 공통 초기 상태 설정 */
+
+.portfolio-title,
+.portfolio-statement {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.animate-fade-in {
+    /* forwards: 애니메이션 완료 후 최종 상태(opacity: 1) 유지 */
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 3. 반응형 디자인 */
+
+
+/* ------------------------------------------- */
+
+@media (max-width: 992px) {
+    .portfolio-content-wrapper {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .portfolio-left-column,
+    .portfolio-right-column {
+        flex: auto;
+        width: 100%;
+        padding-top: 0;
+    }
+    .portfolio-grid {
+        /* 모바일에서는 1열로 변경 */
+        grid-template-columns: 1fr;
+    }
+    .portfolio-item {
+        /* 모바일에서 너무 길어지는 것 방지 */
+        aspect-ratio: 16 / 9;
+    }
+    /* ⭐️ 모바일에서는 와이드 이미지도 1열만 차지하도록 해제 */
+    .portfolio-item.is-wide {
+        grid-column: auto;
+    }
+}

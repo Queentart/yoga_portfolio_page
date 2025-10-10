@@ -1,0 +1,173 @@
+/* src/components/ExperienceSection/ExperienceSection.css */
+
+
+/* ------------------------------------------- */
+
+
+/* 1. 레이아웃 및 스타일링 */
+
+
+/* ------------------------------------------- */
+
+.experience-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-background);
+    padding: 100px 40px;
+}
+
+.experience-content-wrapper {
+    display: flex;
+    max-width: 1300px;
+    width: 100%;
+    gap: 80px;
+}
+
+
+/* --- 왼쪽 칼럼: 경력 목록 (넓은 공간 확보) --- */
+
+.experience-left-column {
+    flex: 2;
+    /* 오른쪽 칼럼보다 더 많은 너비(예: 60%)를 차지하도록 설정 */
+}
+
+.work-title {
+    font-size: 3rem;
+    font-family: var(--font-serif);
+    margin-bottom: 40px;
+}
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.experience-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.experience-item .period {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.experience-item .detail {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+
+/* --- 오른쪽 칼럼: 이미지 및 자격증 (좁은 공간) --- */
+
+.experience-right-column {
+    flex: 1;
+    /* 왼쪽보다 적은 너비(예: 40%)를 차지하도록 설정 */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.experience-image-container {
+    /* 우측 상단 이미지 */
+    width: 100%;
+    /* ⭐️⭐️ 수정: 세로가 긴 이미지에 맞게 3 / 4 비율로 변경 ⭐️⭐️ */
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+}
+
+.experience-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cert-title {
+    font-size: 2rem;
+    font-family: var(--font-serif);
+    margin-bottom: 20px;
+}
+
+.certification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.certification-list li {
+    font-size: 1rem;
+    padding-left: 0;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 2. 애니메이션 정의 및 적용 */
+
+
+/* ------------------------------------------- */
+
+
+/* 단순 페이드 인 애니메이션 정의 (살짝 아래에서 위로) */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ⭐️⭐️ 수정: 모든 애니메이션 대상 요소에 공통 초기 상태 설정 ⭐️⭐️ */
+
+.section-title,
+.experience-item,
+.certification-list li,
+.experience-image-container {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.animate-fade-in {
+    /* forwards: 애니메이션 완료 후 최종 상태(opacity: 1) 유지 */
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+
+/* ------------------------------------------- */
+
+
+/* 3. 반응형 디자인 */
+
+
+/* ------------------------------------------- */
+
+@media (max-width: 992px) {
+    .experience-content-wrapper {
+        flex-direction: column;
+        gap: 60px;
+    }
+    /* 모바일에서는 칼럼 비율을 무시하고 전체 너비 사용 */
+    .experience-left-column,
+    .experience-right-column {
+        flex: auto;
+        width: 100%;
+    }
+    .experience-image-container {
+        /* 모바일에서는 가로가 긴 비율로 다시 변경 */
+        aspect-ratio: 16 / 9;
+    }
+}
