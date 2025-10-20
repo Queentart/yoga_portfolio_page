@@ -151,7 +151,7 @@
     }
     .portfolio-item {
         /* 모바일에서 너무 길어지는 것 방지 */
-        aspect-ratio: 16 / 9;
+        /* aspect-ratio: 16 / 9; */
     }
     /* ⭐️ 모바일에서는 와이드 이미지도 1열만 차지하도록 해제 */
     .portfolio-item.is-wide {
