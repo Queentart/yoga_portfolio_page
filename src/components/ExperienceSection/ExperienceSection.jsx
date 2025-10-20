@@ -9,10 +9,10 @@ import experienceImage from '../../assets/images/work.jpg';
 
 // 데이터 구조 정의
 const experiences = [
-    { title: "동작구 가족센터 힐링육아", period: "2023년 10월 - 현재 · 2년 1개월", detail: "힐링 육아 프로그램 정기 진행" },
-    { title: "크레센도 요가원", period: "2022년 3월 - 현재 · 3년 8개월", detail: "힐링, 빈야사 요가 진행 및 닥터플렉스 기구 외 소도구 수업" },
-    { title: "서울볼더스 클라이밍짐", period: "2019년 1월 - 2020년 1월 · 1년 1개월", detail: "클라이밍짐 요가 스트레칭 수업 진행" },
-    { title: "메리어트호텔 키즈 요가 윈터포레스트", period: "2025년 1월 - 2025년 1월 · 1개월", detail: "키즈요가 진행 (스토리텔링 동화 및 영어책 활용)" },
+    { title: "동작구 가족센터 힐링육아", period: "2023년 -", detail: "힐링 육아 프로그램 정기 진행" },
+    { title: "크레센도 요가원", period: "2022년 -", detail: "힐링, 빈야사 요가 진행 및 닥터플렉스 기구 외 소도구 수업" },
+    { title: "서울볼더스 클라이밍짐", period: "2019년 - 2020년", detail: "클라이밍짐 요가 스트레칭 수업 진행" },
+    { title: "메리어트호텔 키즈 요가 윈터포레스트", period: "2025년", detail: "키즈요가 진행 (스토리텔링 동화 및 영어책 활용)" },
 ];
 
 const certifications = [
