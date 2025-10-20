@@ -168,6 +168,6 @@
     }
     .experience-image-container {
         /* 모바일에서는 가로가 긴 비율로 다시 변경 */
-        aspect-ratio: 16 / 9;
+        /* aspect-ratio: 16 / 9; */
     }
 }
