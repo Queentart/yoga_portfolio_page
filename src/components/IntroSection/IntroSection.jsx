@@ -1,7 +1,10 @@
 // src/components/IntroSection/IntroSection.jsx
 
-import React, { useEffect, useState } from 'react';
+import React from 'react'; // React import 유지
 import './IntroSection.css';
+// ⭐️ 1. useOnScreen 훅 import ⭐️
+import useOnScreen from '../../hooks/useOnScreen'; 
+
 // 실제 요가 강사님 사진 경로로 변경해 주세요
 import yogiImage from '../../assets/images/profile.jpg'; 
 
@@ -24,24 +27,20 @@ function IntroSection() {
   const finalBioHtml = rawBio.replace(/\.\s/g, '.<br />');
   const bioMarkup = { __html: finalBioHtml };
   
-  // 3. 애니메이션 상태 관리
-  const [animated, setAnimated] = useState(false);
+  
+  // ⭐️ 3. Intersection Observer 적용 (기존 useState/useEffect 대체) ⭐️
+  const [sectionRef, isVisible] = useOnScreen({ threshold: 0.1 }); 
+  
+  // isVisible 상태에 따라 애니메이션 클래스 적용 여부 결정
+  const imageClass = isVisible ? 'animate-slide-left' : '';
+  const textClass = isVisible ? 'animate-slide-right' : '';
+  
+  // ⭐️ 기존의 useEffect와 useState는 제거되었습니다. ⭐️
 
-  useEffect(() => {
-    // 컴포넌트 마운트 후 0.1초 뒤 애니메이션 시작
-    const timer = setTimeout(() => {
-        setAnimated(true);
-    }, 100); 
-    
-    return () => clearTimeout(timer); // 클린업 함수 (컴포넌트 언마운트 시 타이머 제거)
-  }, []); 
-
-  // 애니메이션 클래스 정의 (animated 상태에 따라 클래스를 적용)
-  const imageClass = animated ? 'animate-slide-left' : '';
-  const textClass = animated ? 'animate-slide-right' : '';
 
   return (
-    <section className="intro-section">
+    // ⭐️ 4. 섹션 태그에 ref 연결 ⭐️
+    <section className="intro-section" ref={sectionRef}> 
       <div className="intro-content-wrapper">
         
         {/* 왼쪽: 사진 영역 - 애니메이션 적용 */}
