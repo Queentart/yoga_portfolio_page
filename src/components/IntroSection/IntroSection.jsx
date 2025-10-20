@@ -16,7 +16,7 @@ function IntroSection() {
     </React.Fragment>
   );
   
-  const role = "경력 8년 요가 강사"; 
+  const role = "Yoga Instructor"; 
   const rawBio = "서울을 기반으로 활동하며, 빈야사/힐링/리스토레이티브/임산부 요가 전문입니다. 몸과 마음의 조화를 돕는 수업을 디자인합니다.";
   
   // 2. Bio 개행 처리
